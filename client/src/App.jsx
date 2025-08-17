@@ -8,8 +8,10 @@ import LoginDialog from './components/account/LoginDialog';
 import LogoutDialog from './components/account/LogoutDialog';
 
 function App() {
-  const [count, setCount] = useState(0)
-      const clientId='487340431015-2uuflavjp2agrkf2jiruu5o3114e9a3b.apps.googleusercontent.com';
+  const [count, setCount] = useState(0);
+      const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+      console.log("Google Client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
+
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <AccountProvider>
