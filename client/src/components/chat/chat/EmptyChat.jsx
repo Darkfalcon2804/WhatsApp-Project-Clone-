@@ -4,14 +4,15 @@ import {emptyChatImage} from '../../../constants/data';
 
 const Component=styled(Box)`
 background:#f8f9fa;
-padding:30px 0;  
+padding:15px 0;  
 text-align:center;
 // height:803px;
-width:1426px;
+width:1045px;
 height:100vh;
 display:flex;
   align-items:start;
   justify-content:center;
+  // border:1px solid black
 `;
 const Container=styled(Box)`
 padding:0 200px;

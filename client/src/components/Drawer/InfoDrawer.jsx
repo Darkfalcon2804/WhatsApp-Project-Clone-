@@ -29,9 +29,9 @@ height:90%;
 
 const drawerStyle={
     left:20,
-    top:24,
+    top:19,
     height:'94.8%',
-    width:'23.4%',
+    width:'29%',
     boxShadow:'none'
 }
 const InfoDrawer = ({open,setOpen}) => {

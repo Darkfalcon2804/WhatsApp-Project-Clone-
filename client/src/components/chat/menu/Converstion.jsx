@@ -12,7 +12,7 @@ cursor:pointer;
 `;
 const Image=styled(`img`)({
     width:75,
-    height:55,
+    height:50,
     borderRadius:'50%',
     padding:'0 14px',
     objectFit:'cover'
