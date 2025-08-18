@@ -22,7 +22,7 @@ return res.status(500).json(error.message);
 export const getUsers=async (req,res)=>{
   try{
   const users=await user.find({});
-      console.log("Fetched users:", users); 
+ 
   return res.status(200).json(users);
   }
   catch(error){
