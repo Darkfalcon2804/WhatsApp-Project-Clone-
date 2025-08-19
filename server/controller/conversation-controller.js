@@ -2,7 +2,7 @@
 import conversation from "../model/Conversation.js";
 
 
-const newConversation=async(req,res)=>{
+export const newConversation=async(req,res)=>{
 try{
    const senderId=req.body.senderId;
    const recieverId=req.body.receiverId;
@@ -22,4 +22,16 @@ catch(error){
     return res.status(500).json(error.message);
 }
 }
-export default newConversation;
+
+
+export const getConversation=async(req,res)=>{
+     const senderId=req.body.senderId;
+   const recieverId=req.body.receiverId;
+    try{
+        await conversation.findOne({memebers:{$all:[receiverId,senderId]}})
+        return res.status(200).json(conversation);
+    }
+    catch(error){
+   return res.status(500).json(error.message);
+    }
+}
