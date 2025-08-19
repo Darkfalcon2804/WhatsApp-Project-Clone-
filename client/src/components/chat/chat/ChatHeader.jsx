@@ -27,13 +27,13 @@ color:#000
 `;
 
 
-const ChatHeader = () => {
+const ChatHeader = ({person}) => {
   return (
      < Header>
-    <img src='./src/images/HD-wallpaper-money-heist-money-heist-mask-moneyheist-netflix-thumbnail.jpg' alt="dp" style={{width:'45px',borderRadius:'65px',height:'45px'}} />
+    <img src={person.picture} alt="dp" style={{width:'45px',borderRadius:'65px',height:'45px'}} />
      <Box>
-        <Name>Name</Name>
-            <Status>Online Status</Status>
+        <Name>{person.name}</Name>
+            <Status>Offline</Status>
      </Box>
      <RightContanier>
       <Search/>

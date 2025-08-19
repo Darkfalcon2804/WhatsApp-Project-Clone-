@@ -21,9 +21,10 @@ const Image=styled(`img`)({
 });
 
 const Converstion = ({user}) => {
-  const {setPerson}=useContext(AccountContext);
+  const {setPerson ,account}=useContext(AccountContext);
   const getUser=()=>{
     setPerson(user);
+    await setConversation({senderId:account.sub,receiverId:user.sub})
   }
   return (
     <Component onClick={()=> getUser()}>
