@@ -9,21 +9,36 @@ padding:8px 16px;
 display:flex;
 align-items:center;
 `;
-
+const Name=styled(Typography)`
+      margin-left:15px !important;
+`;
+const Status=styled(Typography)`
+   margin-left:15px !important;
+   font-size:12px;
+   color:rgb(0,0,0,0.6)
+`;
+const RightContanier=styled(Box)`
+margin-left:auto;
+& > svg{
+padding:10px;
+font-size:50px;
+color:#000
+}
+`;
 
 
 const ChatHeader = () => {
   return (
      < Header>
-    <img src={defaultProfilePicture} alt="dp"  />
+    <img src='./src/images/HD-wallpaper-money-heist-money-heist-mask-moneyheist-netflix-thumbnail.jpg' alt="dp" style={{width:'45px',borderRadius:'65px',height:'45px'}} />
      <Box>
-        <Typography>Name</Typography>
-            <Typography>Online Status</Typography>
+        <Name>Name</Name>
+            <Status>Online Status</Status>
      </Box>
-     <Box>
+     <RightContanier>
       <Search/>
       <MoreVert/>
-     </Box>
+     </RightContanier>
      </ Header>
   )
 }
