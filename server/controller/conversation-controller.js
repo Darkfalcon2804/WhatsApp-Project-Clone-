@@ -25,10 +25,10 @@ catch(error){
 
 
 export const getConversation=async(req,res)=>{
-     const senderId=req.body.senderId;
-   const recieverId=req.body.receiverId;
     try{
-        await conversation.findOne({memebers:{$all:[receiverId,senderId]}})
+           const senderId=req.body.senderId;
+   const recieverId=req.body.receiverId;
+        await conversation.findOne({memebers:{$all:[recieverId,senderId]}})
         return res.status(200).json(conversation);
     }
     catch(error){

@@ -36,8 +36,8 @@ const ClipIcon=styled(AttachFile)`
 transform:rotate(40deg);
 `;
 
-const Footer = ({sendText}) => {
-  const [text,setText]=useState('');
+const Footer = ({sendText , setValue,value}) => {
+
   
   return (
      <Container>
@@ -46,8 +46,9 @@ const Footer = ({sendText}) => {
         <Search>
             < InputField
             placeholder='Type a message'
-            onChange={(e)=>setText(e.target.value)}
+            onChange={(e)=>setValue(e.target.value)}
             onKeyDown={(e)=>sendText(e)}
+            value={value}
             />
         </Search>
         <Mic/>

@@ -2,6 +2,8 @@ import {useContext, useState} from 'react'
 import {Dialog,Box,Typography,List,ListItem,styled} from '@mui/material';
 import { AccountContext } from '../../../context/AccountProvider';
 import Footer from './Footer';
+import { newMessage } from '../../../service/api';
+
 
 const Wrapper=styled(Box)`
  background-image:url(${'https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'});
@@ -16,15 +18,20 @@ overflow-y:scroll;
 
 const Messages = ({person}) => {
     const {account}=useContext(AccountContext);
-const sendText=(e)=>{
+      const [value,setValue]=useState('');
+const sendText= async(e)=>{
   console.log(e);
   const code=e.keyCode || e.which;
   if(code===13){
     let message={
       senderId: account.sub,
       receiverId: person.sub,
-      // conversationId:
+      conversationId:conversation._id,
+      type:'text',
+      text:value
     }
+   await   newMessage(message);
+   setValue('');
   }
 
 }
@@ -38,6 +45,7 @@ const sendText=(e)=>{
           </Component>
           <Footer
             sendText={sendText}
+            setValue={setValue}
             />
     </Wrapper>
   )
