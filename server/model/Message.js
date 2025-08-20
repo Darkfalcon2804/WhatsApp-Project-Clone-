@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const MessageSchema=new mongoose.Schema({
     conversationId:{
         type:String
@@ -18,8 +19,7 @@ const MessageSchema=new mongoose.Schema({
     }
 },{
     timestamps:true
-});
- 
+})
 
 const message =mongoose.model('Message',MessageSchema);
 export default message;
