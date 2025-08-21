@@ -26,11 +26,11 @@ const sendText= async(e)=>{
     let message={
       senderId: account.sub,
       receiverId: person.sub,
-      conversationId:conversation?._id,
+      conversationId:conversation._id,
       type:'text',
       text:value
     }
-    // console.log(message);
+    console.log(message);
    await   newMessage(message);
    setValue('');
   }

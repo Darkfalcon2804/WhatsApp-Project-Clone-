@@ -28,8 +28,8 @@ export const getConversation=async(req,res)=>{
     try{
            const senderId=req.body.senderId;
    const recieverId=req.body.receiverId;
-        await conversation.findOne({memebers:{$all:[recieverId,senderId]}})
-        return res.status(200).json(conversation);
+    const convo=await conversation.findOne({memebers:{$all:[recieverId,senderId]}})
+        return res.status(200).json(convo);
     }
     catch(error){
    return res.status(500).json(error.message);

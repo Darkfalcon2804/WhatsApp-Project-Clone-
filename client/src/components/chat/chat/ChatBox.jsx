@@ -11,7 +11,8 @@ const ChatBox = () => {
   const [conversation,setConversation]=useState({});
   useEffect(()=>{
       const getConversationDetails=async()=>{
-  let data= await getConversation({senderId: account.sub , receiverId: person.sub});
+  let {data}= await getConversation({senderId: account.sub , receiverId: person.sub});
+    console.log("Conversation data from backend:", data);
   setConversation(data);
       }
        getConversationDetails();
