@@ -33,7 +33,7 @@ export const setConversation=async (data)=>{
 export const getConversation=async (data)=>{
     try{
       let res=await axios.post(`${url}/conversation/get`,data);
-      return res.data
+      return res;
     }
     catch(error){
         console.log("Error while calling getConversation api",error.message);

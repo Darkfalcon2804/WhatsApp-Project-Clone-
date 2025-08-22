@@ -11,14 +11,13 @@ const ChatBox = () => {
   const [conversation,setConversation]=useState({});
   useEffect(()=>{
       const getConversationDetails=async()=>{
-  let {data}= await getConversation({senderId: account.sub , receiverId: person.sub});
-    console.log("Conversation data from backend:", data);
-  setConversation(data);
+  let conversationData= await getConversation({senderId: account.sub , receiverId: person.sub});
+  setConversation(conversationData);
       }
        getConversationDetails();
     },[person.sub]);
   return (
-   <Box  style={{heiht:'75%'}}>
+   <Box  style={{heigt:'75%'}}>
     <ChatHeader person={person}/>
     <Messages   person={person}  conversation={conversation}/>
    </Box>
