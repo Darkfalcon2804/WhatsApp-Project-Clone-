@@ -26,6 +26,7 @@ const Converstion = ({user}) => {
     setPerson(user);
     await setConversation({senderId:account.sub,receiverId:user.sub})
   }
+  // console.log(user);
   return (
     <Component onClick={()=> getUser()}>
         <Box>

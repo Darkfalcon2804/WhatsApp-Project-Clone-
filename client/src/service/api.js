@@ -49,3 +49,13 @@ await axios.post(`${url}/message/add`,data);
     console.log("Error while calling newMessage api ",error.message);
   }
 }
+
+export const getMessages=async(id)=>{
+try{
+let res=await axios.get(`${url}/message/get/${id}`);
+return res.data;
+}
+catch(error){
+console.log("Error while calling getMessages api ", error.message);
+}
+}

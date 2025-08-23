@@ -2,7 +2,8 @@ import message from "../model/Message.js"
 import conversation from "../model/Conversation.js";
 export const newMessage=async(req,res)=>{
     //  console.log("Incoming body:", req.body); //testing
-const newMessage= new message(req.body);
+
+    const newMessage= new message(req.body);
     try{
 await newMessage.save();
 await conversation.findByIdAndUpdate(req.body.conversationId,{message:req.body.text});
@@ -11,4 +12,14 @@ await conversation.findByIdAndUpdate(req.body.conversationId,{message:req.body.t
 catch(error){
  res.status(500).json(error.message);
 }
+}
+
+export const getMessages=async(req,res) => {
+    try{
+        const messages=await message.find({conversationId:req.params.id});
+      return res.status(200).json(messages);
+    }
+    catch(error){
+        return res.status(500).json(error.message);
+    }
 }

@@ -1,8 +1,8 @@
-import {useContext, useState} from 'react'
+import {useContext, useState,useEffect} from 'react'
 import {Dialog,Box,Typography,List,ListItem,styled} from '@mui/material';
 import { AccountContext } from '../../../context/AccountProvider';
 import Footer from './Footer';
-import { newMessage } from '../../../service/api';
+import { getMessages, newMessage } from '../../../service/api';
 import conversation from '../../../../../server/model/Conversation.js';
 
 const Wrapper=styled(Box)`
@@ -19,6 +19,13 @@ overflow-y:scroll;
 const Messages = ({person ,conversation}) => {
     const {account}=useContext(AccountContext);
       const [value,setValue]=useState('');
+      useEffect(()=>{
+  const getMessageDetails=async()=>{
+    let data=await getMessages(conversation._id);
+    console.log(data);
+  }
+  getMessageDetails();
+      },[])
 const sendText= async(e)=>{
   // console.log(e);
   const code=e.keyCode || e.which;
