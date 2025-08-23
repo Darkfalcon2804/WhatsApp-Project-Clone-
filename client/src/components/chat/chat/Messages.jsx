@@ -4,6 +4,7 @@ import { AccountContext } from '../../../context/AccountProvider';
 import Footer from './Footer';
 import { getMessages, newMessage } from '../../../service/api';
 import conversation from '../../../../../server/model/Conversation.js';
+import Message from './Message.jsx';
 
 const Wrapper=styled(Box)`
  background-image:url(${'https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'});
@@ -19,13 +20,18 @@ overflow-y:scroll;
 const Messages = ({person ,conversation}) => {
     const {account}=useContext(AccountContext);
       const [value,setValue]=useState('');
+    const [messages,setMessages]=useState([]);
+
+
       useEffect(()=>{
   const getMessageDetails=async()=>{
     let data=await getMessages(conversation._id);
-    console.log(data);
+    setMessages(data);
   }
-  getMessageDetails();
-      },[])
+  conversation._id && getMessageDetails();
+      },[person._id,conversation._id])
+
+
 const sendText= async(e)=>{
   // console.log(e);
   const code=e.keyCode || e.which;
@@ -43,13 +49,14 @@ const sendText= async(e)=>{
   }
 
 }
-
-
-
   return (
     <Wrapper>
           <Component>
-    
+    {
+      messages && messages.map(message=>{
+        <Message message={message}/>
+})
+    }
           </Component>
           <Footer
             sendText={sendText}
