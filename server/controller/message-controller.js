@@ -1,7 +1,7 @@
 import message from "../model/Message.js"
 import conversation from "../model/Conversation.js";
 export const newMessage=async(req,res)=>{
-     console.log("Incoming body:", req.body); //testing
+    //  console.log("Incoming body:", req.body); //testing
 const newMessage= new message(req.body);
     try{
 await newMessage.save();
