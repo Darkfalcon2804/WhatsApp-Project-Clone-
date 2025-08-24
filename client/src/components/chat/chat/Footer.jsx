@@ -36,13 +36,33 @@ const ClipIcon=styled(AttachFile)`
 transform:rotate(40deg);
 `;
 
-const Footer = ({sendText , setValue,value}) => {
+const Footer = ({sendText , setValue,value,file,setFile}) => {
 
-  
+  useEffect(()=>{
+   const getImage=()=>{
+    if(file){
+      // const   
+    }
+   }
+  },[file])
+
+  const onFileChange=(e)=>{
+    setFile(e.target.files[0]);
+    setValue(e.target.files[0].name);
+  }
   return (
      <Container>
       <EmojiEmotionsOutlined/>
+          <label htmlFor="fileInput">
         <ClipIcon/>
+          </label>
+        
+              <input 
+              type="file"
+              id="fileInput"
+              style={{display:'none'}}
+              onChange={(e)=>onFileChange(e)}
+              />
         <Search>
             < InputField
             placeholder='Type a message'
