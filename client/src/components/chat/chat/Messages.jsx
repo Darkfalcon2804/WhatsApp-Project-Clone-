@@ -66,6 +66,7 @@ const sendText= async(e)=>{
           <Footer
             sendText={sendText}
             setValue={setValue}
+            value={value}
             />
     </Wrapper>
   )
