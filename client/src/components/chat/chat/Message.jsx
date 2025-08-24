@@ -1,15 +1,66 @@
-import React from 'react'
+import {useContext} from 'react'
 import {Dialog,Box,Typography,List,ListItem,styled} from '@mui/material';
-const Message = ([message]) => {
+import { formatDate } from '../../../utils/common-utils';
+import { AccountContext } from '../../../context/AccountProvider';
+const Own=styled(Box)`
+   background:#dcf8c6;
+   max-width:70%;
+   margin-left:auto;
+   padding:10px;
+   width:fit-content;
+   display:flex;
+   border-radius:8px;
+   word-break:break-word;
+   `;
+   const Wrapper=styled(Box)`
+   background:#fff;
+   max-width:70%;
+   padding:10px;
+   width:fit-content;
+   display:flex;
+   border-radius:8px;
+   word-break:break-word;
+   `;
+  const Text=styled(Typography)`
+  font-size:14px;
+  padding: 0 25px 0 5px;
+  `;
+  const Time=styled(Typography)`
+  font-size:10px;
+  color:#919191;
+  margin-top:6px;
+  word-break:keep-all;
+  margin-top:auto;
+
+  `;
+const Message = ({message}) => {
+  const {account}=useContext(AccountContext);
   return (
-    <Box>
-        <Typography>
+     <>
+   {
+      account.sub===message.senderId?
+      <Own>
+        <Text>
             {message.text}
-        </Typography>
-        <Typography>
-            {message.createdAt}
-        </Typography>
-    </Box>
+        </Text>
+        < Time>
+            {formatDate(message.createdAt)}
+        </ Time>
+    </Own>
+    :
+    <Wrapper>
+        <Text>
+            {message.text}
+        </Text>
+        < Time>
+            {formatDate(message.createdAt)}
+        </ Time>
+    </Wrapper>
+    
+   }
+   </>
+   
+    
   )
 }
 
