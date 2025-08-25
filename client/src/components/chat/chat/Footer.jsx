@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import {Dialog,Box,Typography,List,ListItem,styled} from '@mui/material';
 import { InputBase } from '@mui/material';
 import {EmojiEmotionsOutlined,AttachFile,Mic} from '@mui/icons-material';
-
+import { uploadFile } from '../../../service/api';
 const Container=styled(Box)`
 height:60px;
 background:#ededed;
@@ -39,11 +39,15 @@ transform:rotate(40deg);
 const Footer = ({sendText , setValue,value,file,setFile}) => {
 
   useEffect(()=>{
-   const getImage=()=>{
+   const getImage=async()=>{
     if(file){
-      // const   
+      const data=new FormData();
+      data.append("name",file.name);
+      data.append("file",file);
+      await uploadFile(data);
     }
    }
+   getImage();
   },[file])
 
   const onFileChange=(e)=>{
