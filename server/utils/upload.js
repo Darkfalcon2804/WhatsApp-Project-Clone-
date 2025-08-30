@@ -9,11 +9,12 @@ const PASSWORD=process.env.DB_PASSWORD;
 
 
 const storage= new GridFsStorage({
-    url:`mongodb://${USERNAME}:${PASSWORD}@ac-ewiaezn-shard-00-00.81adi2b.mongodb.net:27017,ac-ewiaezn-shard-00-01.81adi2b.mongodb.net:27017,ac-ewiaezn-shard-00-02.81adi2b.mongodb.net:27017/?ssl=true&replicaSet=atlas-f9iqkh-shard-0&authSource=admin&retryWrites=true&w=majority&appName=DarkCluster28`,
-//    options: {    useNewUrlParser:true},
+   //  url:`mongodb://${USERNAME}:${PASSWORD}@ac-ewiaezn-shard-00-00.81adi2b.mongodb.net:27017,ac-ewiaezn-shard-00-01.81adi2b.mongodb.net:27017,ac-ewiaezn-shard-00-02.81adi2b.mongodb.net:27017/?ssl=true&replicaSet=atlas-f9iqkh-shard-0&authSource=admin&retryWrites=true&w=majority&appName=DarkCluster28`,
+   url:`mongodb+srv://${USERNAME}:${PASSWORD}@ac-ewiaezn-shard-00-00.81adi2b.mongodb.net/?ssl=true&replicaSet=atlas-f9iqkh-shard-0&authSource=admin&retryWrites=true&w=majority&appName=DarkCluster28`,
+    options: {useNewUrlParser:true,useUnifiedTopology: true },
    file:(req,file)=>{
      const match=["image/png","image/jpg"];
-     if(match.indexOf(file.mimeType)===-1){
+     if(match.indexOf(file.mimetype)===-1){
         return `${Date.now()}-file-${file.originalname}`;
      }
      return{

@@ -17,21 +17,20 @@ opacity:.6;
 `;
 
 const Conversations = ({text}) => {
-    const [user,setUsers]=useState([]);
-    
+    const [users,setUsers]=useState([]); 
     const {account}=useContext(AccountContext);
     useEffect(()=>{
-        const fetchData=async ()=>{
-         let response=  await getUsers();
-         const  filteredData=response.filter(user => user.name.toLowerCase().includes(text.toLowerCase()));
-         setUsers(filteredData);
+          const fetchData = async () => {
+            let data = await getUsers();
+            let fiteredData = data.filter(user => user.name.toLowerCase().includes(text.toLowerCase()));
+            setUsers(fiteredData);
         }
         fetchData();
     },[text]);
   return (
   <Component>
     {
-        user.map(user =>  (
+        users.map(user =>  (
             user.sub!==account.sub &&
             <>
             <Converstion user={user}/>    

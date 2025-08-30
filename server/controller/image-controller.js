@@ -13,10 +13,8 @@ conn.once('open',()=>{
 
 })
 
-
-
 export const uploadFile=async(req,res)=>{
-if(!request.file){
+if(!req.file){
     return res.status(404).json("File not found ");
 }
 const imageUrl=`${url}/file/${req.file.filename}`;
@@ -24,13 +22,13 @@ return res.status(200).json(imageUrl);
 }
 
 
-export const getImage=async(req,res)=>{
-try{
-const file=await gfs.files.findOne({filename:req.params.filename});
-const readStream =gridFsBucket.openDownloadStream(file._id);
-readStream.pipe(res);
-}
-catch(error){
-    return res.status(500).json(error.message);
-}
-}
+// export const getImage=async(req,res)=>{
+// try{
+// const file=await gfs.files.findOne({filename:req.params.filename});
+// const readStream =gridFsBucket.openDownloadStream(file._id);
+// readStream.pipe(res);
+// }
+// catch(error){
+//     return res.status(500).json(error.message);
+// }
+// }
