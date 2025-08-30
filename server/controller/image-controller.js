@@ -22,13 +22,17 @@ return res.status(200).json(imageUrl);
 }
 
 
-// export const getImage=async(req,res)=>{
-// try{
-// const file=await gfs.files.findOne({filename:req.params.filename});
-// const readStream =gridFsBucket.openDownloadStream(file._id);
-// readStream.pipe(res);
-// }
-// catch(error){
-//     return res.status(500).json(error.message);
-// }
-// }
+export const getImage=async(req,res)=>{
+try{
+const file=await gfs.files.findOne({filename:req.params.filename});
+  if (!file) {
+      return res.status(404).json({ error: "File not found" });
+    }
+    res.set("Content-Type", file.contentType);
+const readStream =gridFsBucket.openDownloadStream(file._id);
+readStream.pipe(res);
+}
+catch(error){
+    return res.status(500).json(error.message);
+}
+}
