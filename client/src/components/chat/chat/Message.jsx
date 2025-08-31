@@ -1,7 +1,9 @@
 import {useContext} from 'react'
 import {Dialog,Box,Typography,List,ListItem,styled} from '@mui/material';
-import { formatDate } from '../../../utils/common-utils';
+import { formatDate,downloadMedia } from '../../../utils/common-utils';
+import GetAppIcon from '@mui/icons-material/GetApp';
 import { AccountContext } from '../../../context/AccountProvider';
+import {iconPDF} from '../../../constants/data'
 const Own=styled(Box)`
    background:#dcf8c6;
    max-width:70%;
@@ -40,28 +42,66 @@ const Message = ({message}) => {
    {
       account.sub===message.senderId?
       <Own>
-        <Text>
+        {
+            message.type==='file'?<ImageMessage message={message}/> : <TextMessage message={message}/>
+        }
+        {/* <Text>
             {message.text}
-        </Text>
-        < Time>
+        </Text> */}
+        {/* < Time>
             {formatDate(message.createdAt)}
-        </ Time>
+        </ Time> */}
     </Own>
     :
     <Wrapper>
-        <Text>
+         {
+            message.type==='file'?<ImageMessage message={message}/> : <TextMessage message={message}/>
+        }
+        {/* <Text>
             {message.text}
         </Text>
         < Time>
             {formatDate(message.createdAt)}
-        </ Time>
+        </ Time> */}
     </Wrapper>
     
    }
    </>
-   
-    
   )
 }
-
+const ImageMessage=({message})=>{
+  return (
+    <Box style={{position:'relative'}}>
+        {
+            message?.text?.includes('.pdf')?
+            <Box style={{display:'flex'}}>
+                    <img src={iconPDF} alt="pdf" style={{width:90}}/>
+                    <Typography style={{fontSize:14}}>{message.text.split('/').pop()}</Typography>
+            </Box>
+            :
+            <img src={message.text} alt={message.text} style={{width:300,height:'100%',objectFit:'cover'}}/>
+        }
+         < Time style={{position:'absolute',bottom:0,right:0}}>
+        <GetAppIcon
+        style={{marginRight:10,border:'1px solid grey',borderRadius:'50%'}}
+        fontSize='small'
+        onClick={(e)=>downloadMedia(e,message.text)}
+/>
+            {formatDate(message.createdAt)}
+        </ Time>
+    </Box>
+  )
+}
+const TextMessage=({message})=>{
+return (
+    <>
+      <Text>
+            {message.text}
+        </Text>
+        < Time>
+            {formatDate(message.createdAt)}
+        </ Time>
+    </>
+)
+}
 export default Message
