@@ -7,10 +7,18 @@ export const AccountContext=createContext(null);
 const AccountProvider = ({children}) => {
     const[account,setAccount]=useState();
     const [person ,setPerson]=useState({});
+    const [activeUsers,setActiveUsers]=useState([]);
     const socket=useRef();
-    useEffect(()=>{
-      socket.current=io('ws://localhost:9000')
-    },[])
+    useEffect(() => {
+  socket.current = io("http://localhost:9000", {
+    transports: ["websocket"],
+  });
+}, []);
+
+
+
+
+
   return (
    <AccountContext.Provider
      value={{
@@ -18,7 +26,9 @@ const AccountProvider = ({children}) => {
             setAccount,
             person,
             setPerson,
-            socket
+            socket,
+            activeUsers,
+            setActiveUsers
      }}
    >
     {children}

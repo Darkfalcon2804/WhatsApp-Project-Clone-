@@ -1,4 +1,5 @@
-import React from 'react'
+import {useContext} from 'react'
+import { AccountContext } from '../../../context/AccountProvider';
 import {Dialog,Box,Typography,List,ListItem,styled} from '@mui/material';
 import {Search,MoreVert} from '@mui/icons-material';
 import { defaultProfilePicture } from '../../../constants/data';
@@ -28,12 +29,15 @@ color:#000
 
 
 const ChatHeader = ({person}) => {
+   const{activeUsers}=useContext(AccountContext);
+
+
   return (
      < Header>
     <img src={person.picture} alt="dp" style={{width:'45px',borderRadius:'65px',height:'45px'}} />
      <Box>
         <Name>{person.name}</Name>
-            <Status>Offline</Status>
+            <Status>{activeUsers?.find(user=>user.sub===person.sub)?'Online':'Offline'}</Status>
      </Box>
      <RightContanier>
       <Search/>
