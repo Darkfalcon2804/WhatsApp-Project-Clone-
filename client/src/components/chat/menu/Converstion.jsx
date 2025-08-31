@@ -11,7 +11,7 @@ padding:30px 0;
 margin-top:15px;
 cursor:pointer;
 `;
-const Image=styled(`img`)({
+const Image=styled('img')({
     width:65,
     height:35,
     borderRadius:'50%',
@@ -27,10 +27,21 @@ const Converstion = ({user}) => {
     await setConversation({senderId:account.sub,receiverId:user.sub})
   }
   // console.log(user);
+  // console.log(user.picture);
   return (
     <Component onClick={()=> getUser()}>
         <Box>
-        <Image src={user.picture} alt="dp" />
+          
+        {/* <Image src={user.picture} alt="dp" /> */}
+        <Image 
+  src={user.picture?.trim()} 
+  alt={user.name || "dp"} 
+  onError={(e) => {
+    console.error("Image failed to load:", user.picture);
+    e.target.src = "/default-dp.png"; // put a default image in public/
+  }} 
+/>
+
         </Box>
         <Box>
                 <Typography>{user.name}</Typography>

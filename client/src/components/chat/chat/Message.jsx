@@ -11,7 +11,7 @@ const Own=styled(Box)`
    padding:10px;
    width:fit-content;
    display:flex;
-   border-radius:8px;
+   border-radius:8px;                           
    word-break:break-word;
    `;
    const Wrapper=styled(Box)`
@@ -69,29 +69,29 @@ const Message = ({message}) => {
    </>
   )
 }
-const ImageMessage=({message})=>{
-  return (
-    <Box style={{position:'relative'}}>
-        {
-            message?.text?.includes('.pdf')?
-            <Box style={{display:'flex'}}>
-                    <img src={iconPDF} alt="pdf" style={{width:90}}/>
-                    <Typography style={{fontSize:14}}>{message.text.split('/').pop()}</Typography>
-            </Box>
-            :
-            <img src={message.text} alt={message.text} style={{width:300,height:'100%',objectFit:'cover'}}/>
-        }
-         < Time style={{position:'absolute',bottom:0,right:0}}>
-        <GetAppIcon
-        style={{marginRight:10,border:'1px solid grey',borderRadius:'50%'}}
-        fontSize='small'
-        onClick={(e)=>downloadMedia(e,message.text)}
-/>
-            {formatDate(message.createdAt)}
-        </ Time>
-    </Box>
-  )
-}
+    const ImageMessage=({message})=>{
+    return (
+        <Box style={{position:'relative'}}>
+            {
+                message?.text?.includes('.pdf')?
+                <Box style={{display:'flex'}}>
+                        <img src={iconPDF} alt="pdf" style={{width:90}}/>
+                        <Typography style={{fontSize:14}}>{message.text.split('/').pop()}</Typography>
+                </Box>
+                :
+                <img src={message.text} alt={message.text} style={{width:300,height:'100%',objectFit:'cover'}}/>
+            }
+            < Time style={{position:'absolute',bottom:0,right:0}}>
+            <GetAppIcon
+            style={{marginRight:10,border:'1px solid grey',borderRadius:'50%'}}
+            fontSize='small'
+            onClick={(e)=>downloadMedia(e,message.text)}
+    />
+                {formatDate(message.createdAt)}
+            </ Time>
+        </Box>
+    )
+    }
 const TextMessage=({message})=>{
 return (
     <>
