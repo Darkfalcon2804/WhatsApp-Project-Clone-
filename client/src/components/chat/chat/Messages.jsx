@@ -20,13 +20,24 @@ padding:1px 60px;
 
 
 const Messages = ({person ,conversation}) => {
-    const {account}=useContext(AccountContext);
+    const {account ,socket,newMessageFlag,setNewMessageFlag}=useContext(AccountContext);
       const [value,setValue]=useState('');
     const [messages,setMessages]=useState([]);
-    const [newMessageFlag,setNewMessageFlag]=useState(false);
+   
      const [file,setFile]=useState();
 const[image,setImage]=useState('');
+   const[incomingMessage,setIncomingMessage]=useState(null);
    const scrollRef = useRef();
+
+    useEffect(()=>{
+      socket.current.on('getMessage',data=>{
+        setIncomingMessage({
+          ...data,
+          createdAt:Date.now()
+        })
+      })
+    })
+
 
       useEffect(()=>{
   const getMessageDetails=async()=>{
@@ -41,6 +52,11 @@ const[image,setImage]=useState('');
   useEffect(() => {
           scrollRef.current?.scrollIntoView({behavior: "auto", block: "end"})
       }, [messages]);
+
+useEffect(()=>{
+incomingMessage && conversation?.members?.includes(incomingMessage.senderId)&&
+setMessages(prev=>[...prev,incomingMessage])
+},[incomingMessage,conversation])
 
 
 const sendText= async(e)=>{
@@ -66,6 +82,8 @@ const sendText= async(e)=>{
       text:image
     }
     }
+   socket.current.emit('sendMessage',message);
+
     
     // console.log(message);
    await   newMessage(message);
