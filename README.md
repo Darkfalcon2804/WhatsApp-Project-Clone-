@@ -16,7 +16,8 @@ A real-time chat application built with the **MERN stack** that allows users to 
 
 ## 🎥 Demo
    
-[![Demo Video](https://youtu.be/c6ZLbieISG0)]  
+[![Demo Video](https://img.youtube.com/vi/c6ZLbieISG0/0.jpg)](https://youtu.be/c6ZLbieISG0)
+ 
 
 ---
 
