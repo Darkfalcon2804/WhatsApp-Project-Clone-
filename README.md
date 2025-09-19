@@ -27,7 +27,7 @@ A real-time chat application built with the **MERN stack** that allows users to 
 - **Backend:** Node.js, Express.js  
 - **Database:** MongoDB  
 - **Real-time:** Socket.io  
-- **Authentication:** JWT / OAuth (if used)  
+ 
 
 ---
 
@@ -35,8 +35,10 @@ A real-time chat application built with the **MERN stack** that allows users to 
 
 1. **Clone the repository**  
    ```bash
-   git clone https://github.com/your-username/whatsapp-clone.git
+   git clone https://github.com/Darkfalcon2804/WhatsApp-Project-Clone-.git
+
   ```
+
 2. **Create `.env` file for client**
 
 Inside the `client` folder, create a `.env` file and add the following:
