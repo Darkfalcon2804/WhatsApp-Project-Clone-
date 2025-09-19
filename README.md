@@ -16,7 +16,7 @@ A real-time chat application built with the **MERN stack** that allows users to 
 
 ## 🎥 Demo
    
-[![Demo Video](./public/Video.mp4)]  
+[![Demo Video]()]  
 
 ---
 
