@@ -26,14 +26,22 @@ padding:30px 0;
 margin-top:15px;
 cursor:pointer;
 `;
-const Image=styled('img')({
-    width:65,
-    height:35,
-    borderRadius:'50%',
-    padding:'0 14px',
-    paddingLeft:'15px', 
-    objectFit:'cover'
+// const Image=styled('img')({
+//     width:65,
+//     height:35,
+//     borderRadius:'50%',
+//     padding:'0 14px',
+//     paddingLeft:'15px', 
+//     objectFit:'cover'
+// });
+const Image = styled('img')({
+  width: 45,
+  height: 45,
+  borderRadius: '50%',
+  marginRight: '14px',
+  objectFit: 'cover',
 });
+
 
 const Converstion = ({user}) => {
   const {setPerson ,account,  newMessageFlag}=useContext(AccountContext);
@@ -51,20 +59,22 @@ const Converstion = ({user}) => {
     await setConversation({senderId:account.sub,receiverId:user.sub})
   }
   // console.log(user);
-  // console.log(user.picture);
+  console.log(user.picture);
   return (
     <Component onClick={()=> getUser()}>
         <Box>
           
-        {/* <Image src={user.picture} alt="dp" /> */}
-        <Image 
+        <Image src={user.picture} alt="dp" />
+       
+
+        {/* <Image 
   src={user.picture?.trim()} 
   alt={user.name || "dp"} 
   onError={(e) => {
     console.error("Image failed to load:", user.picture);
     e.target.src = "/default-dp.png"; // put a default image in public/
   }} 
-/>
+/> */}
 
         </Box>
         <Box style={{width:'100%'}}>
